@@ -24,7 +24,7 @@ class ColorRepository extends Repository
      */
     public static function storeByRequest(ColorRequest $request): Color
     {
-        $shop = generaleSetting('rootShop');
+        $shop = generaleSetting('shop');
 
         $color = self::create([
             'name' => $request->name,

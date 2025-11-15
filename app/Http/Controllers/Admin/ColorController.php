@@ -14,7 +14,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $shop = generaleSetting('rootShop');
+        $shop = generaleSetting('shop');
 
         // Get colors
         $colors = $shop->colors()->paginate(20);

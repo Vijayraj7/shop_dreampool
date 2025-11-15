@@ -5,6 +5,10 @@
         <h4>
             {{ __('Color List') }}
         </h4>
+        <button type="button" data-bs-toggle="modal" data-bs-target="#createBrand" class="btn py-2 btn-primary">
+            <i class="fa fa-plus-circle"></i>
+            {{__('Add Color')}}
+        </button>
     </div>
 
     <div class="container-fluid mt-3">
@@ -59,4 +63,116 @@
         </div>
 
     </div>
+    <!--=== Create Color Modal ===-->
+    <form action="{{ route('shop.color.store') }}" method="POST">
+        @csrf
+        <div class="modal fade" id="createBrand" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            {{ __('Create New Color') }}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label">
+                                {{ __('Name') }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                placeholder="Enter Name" required />
+                            @error('name')
+                                <p class="text text-danger m-0">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3 d-flex align-items-center gap-3">
+                            <label for="color_code" class="form-label m-0">
+                                {{ __('Select Color') }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="color" id="color_code" name="color_code"  style="width: 120px;height: 40px"/>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            {{ __('Close') }}
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Submit') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--=== update color Modal ===-->
+    <form action="" id="updateColor" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="modal fade" id="updateBrand" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            {{ __('Update Color') }}
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="updateName" class="form-label">
+                                {{ __('Name') }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="updateName" name="name"
+                                placeholder="Enter Name" required value="" />
+                            @error('name')
+                                <p class="text text-danger m-0">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3 d-flex align-items-center gap-3">
+                            <label for="updateColorCode" class="form-label m-0">
+                                {{ __('Select Color') }}
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="color" id="updateColorCode" name="color_code"  style="width: 120px;height: 40px"/>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            {{ __('Close') }}
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('Update') }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
 @endsection
+
+@push('scripts')
+
+<script>
+    const openColorUpdateModal = (color) => {
+
+        $("#updateName").val(color.name);
+        $("#updateColorCode").val(color.color_code);
+        $("#updateColor").attr('action', `{{ route('shop.color.update', ':id') }}`.replace(':id', color.id));
+
+        $("#updateBrand").modal('show');
+    }
+</script>
+
+@endpush
