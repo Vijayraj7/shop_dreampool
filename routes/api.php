@@ -26,6 +26,7 @@ use App\Http\Controllers\API\SupportTicketController;
 use App\Http\Controllers\Admin\WhatsAppChatController;
 use App\Http\Controllers\API\TicketIssueTypeController;
 use App\Http\Controllers\API\Auth\ForgotPasswordController;
+use App\Http\Controllers\API\SubCategoryController;
 use App\Http\Controllers\API\SupportTicketMessageController;
 
 /*
@@ -93,6 +94,12 @@ Route::controller(BannerController::class)->group(function () {
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/categories', 'index');
     Route::get('/category/{category_id}/attributes', 'getCategoryAttributes');
+});
+
+// category route
+Route::controller(SubCategoryController::class)->group(function () {
+    Route::get('/sub-categories', 'index');
+    Route::get('/sub-categories/{category_id}/attributes', 'getCategoryAttributes');
 });
 
 
