@@ -26,7 +26,7 @@ class UnitRepository extends Repository
      */
     public static function storeByRequest(UnitRequest $request): Unit
     {
-        $shop = generaleSetting('rootShop');
+        $shop = generaleSetting('shop');
 
         $unit = self::create([
             'name' => $request->name,
