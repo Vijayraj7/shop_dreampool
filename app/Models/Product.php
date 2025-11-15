@@ -132,9 +132,13 @@ class Product extends Model
     public function thumbnail(): Attribute
     {
         $thumbnail = asset('default/default.jpg');
+        if(isset($this->media)){
+            if(isset($this->media->src)){
         if ($this->media || Storage::exists($this->media->src)) {
             $thumbnail = Storage::url($this->media->src);
         }
+    }
+}
 
         return new Attribute(
             get: fn () => $thumbnail
