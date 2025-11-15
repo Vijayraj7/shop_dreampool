@@ -27,6 +27,7 @@
                                 <th class="text-center">{{ _('SL') }}</th>
                                 <th>{{ __('Name') }}</th>
                                 <th>{{ __('Status') }}</th>
+                                <th class="text-center">{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         @forelse($brands as $key => $brand)
@@ -38,11 +39,19 @@
                                 <td>{{ $brand->name }}</td>
                                 <td>
                                     <label class="switch mb-0">
-                                        <a href="javascript:void(0)">
+                                        <a href="{{ route('shop.brand.toggle', $brand->id) }}">
                                             <input type="checkbox" {{ $brand->is_active ? 'checked' : '' }}>
                                             <span class="slider round"></span>
                                         </a>
                                     </label>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex gap-3 justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary btn-sm circleIcon"
+                                            onclick="openUpdateModal({{ $brand }})">
+                                            <img src="{{ asset('assets/icons-admin/edit.svg') }}" alt="edit" loading="lazy" />
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         @empty
@@ -138,7 +147,7 @@
     <script>
         const openUpdateModal = (brand) => {
             $("#editName").val(brand.name);
-            $("#formEditBrand").attr('action', `{{ route('admin.brand.update', ':id') }}`.replace(':id', brand.id));
+            $("#formEditBrand").attr('action', `{{ route('shop.brand.update', ':id') }}`.replace(':id', brand.id));
 
             $("#updateBrand").modal('show');
         }
