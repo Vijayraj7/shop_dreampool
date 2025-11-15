@@ -27,7 +27,7 @@ class SizeRepository extends Repository
      * */
     public static function storeByRequest(SizeRequest $request): Size
     {
-        $shop = generaleSetting('rootShop');
+        $shop = generaleSetting('shop');
 
         $size = self::create([
             'name' => $request->name,
