@@ -23,7 +23,7 @@ class BrandRepository extends Repository
      */
     public static function storeByRequest(BrandRequest $request): Brand
     {
-        $shop = generaleSetting('rootShop');
+        $shop = generaleSetting('shop');
 
         $brand = self::create([
             'name' => $request->name,

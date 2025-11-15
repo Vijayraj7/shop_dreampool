@@ -14,7 +14,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $shop = generaleSetting('rootShop');
+        $shop = generaleSetting('shop');
 
         // Get brands
         $brands = $shop->brands()->paginate(20);
