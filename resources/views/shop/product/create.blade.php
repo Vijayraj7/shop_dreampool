@@ -644,7 +644,7 @@
                     }
                 });
 
-                // Remove the  row from the table
+                // Remove the row from the table
                 $(this).find(':not(:selected)').each(function() {
                     var colorId = $(this).val();
                     $(`#selectedColorRow_${colorId}`).remove();
