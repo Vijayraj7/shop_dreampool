@@ -23,6 +23,7 @@
                                 <th>{{ __('Name') }}</th>
                                 <th>{{ __('Color') }}</th>
                                 <th>{{ __('Status') }}</th>
+                                <th class="text-center">{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         @forelse($colors as $key => $color)
@@ -40,11 +41,19 @@
                                 </td>
                                 <td>
                                     <label class="switch mb-0">
-                                        <a href="javascript:void(0)">
+                                        <a href="{{ route('shop.color.toggle', $color->id) }}">
                                             <input type="checkbox" {{ $color->is_active ? 'checked' : '' }}>
                                             <span class="slider round"></span>
                                         </a>
                                     </label>
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex gap-3 justify-content-center">
+                                        <button type="button" class="btn btn-outline-primary circleIcon btn-sm" onclick="openColorUpdateModal({{ $color }})">
+                                            <img src="{{ asset('assets/icons-admin/edit.svg') }}" alt="edit" loading="lazy" />
+                                        </button>
+
+                                    </div>
                                 </td>
                             </tr>
                         @empty
