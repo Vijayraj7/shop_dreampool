@@ -8,6 +8,7 @@ use App\Models\Media;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,7 @@ class UserRepository extends Repository
      */
     public static function findByPhone($phone)
     {
-        return self::query()->where('phone', $phone)->orWhere('email', $phone)->first();
+        return self::query()->where('phone', $phone)->orWhere(DB::raw("CONCAT(phone_code, phone)"), $phone)->orWhere('email', $phone)->first();
     }
 
     public static function findByContact($contact)

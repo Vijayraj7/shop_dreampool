@@ -150,7 +150,7 @@ class CartRepository extends Repository
 
         if ($cart) {
             $cart->update([
-                'quantity' => $isBuyNow ? 1 : $cart->quantity + 1,
+                'quantity' => $isBuyNow ?  $product->min_order_quantity ?? 1  : $cart->quantity + 1,
                 'size' => $request->size ?? $cart->size,
                 'color' => $request->color ?? $cart->color,
                 'unit' => $request->unit ?? $cart->unit,
@@ -164,7 +164,7 @@ class CartRepository extends Repository
             'shop_id' => $product->shop->id,
             'is_buy_now' => $isBuyNow,
             'customer_id' => $customer->id,
-            'quantity' => $request->quantity ?? 1,
+            'quantity' => $product->min_order_quantity ?? 1,
             'size' => $size,
             'color' => $color,
             'unit' => $unit,

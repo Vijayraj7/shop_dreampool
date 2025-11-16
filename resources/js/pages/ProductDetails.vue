@@ -297,13 +297,14 @@
 
                                 <div
                                     class="w-6 flex items-center justify-center text-center text-slate-950 text-base font-medium leading-normal">
-                                    {{ cartProduct.quantity }}
+                                    {{ cartProduct.quantity == 1 ? product.quantity ?? 1 : cartProduct.quantity }}
                                 </div>
 
                                 <button class="bg-slate-100 p-2 rounded" @click="incrementQty">
                                     <PlusIcon class="w-6 h-6 text-slate-800" />
                                 </button>
                             </div>
+   <!-- <pre>{{ JSON.stringify(product) }}</pre> -->
 
                             <!-- Add to Cart -->
                             <button v-if="!cartProduct"

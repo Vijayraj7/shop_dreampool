@@ -92,7 +92,7 @@ class ForgotPasswordController extends Controller
         $user = UserRepository::findByPhone($request->phone);
 
         if (! $user) {
-            return $this->json('Sorry! No user found', [], 422);
+            return $this->json('Sorry! No user found' . $request->phone, [], 422);
         }
 
         $verifyManage = Cache::rememberForever('verify_manage', function () {
