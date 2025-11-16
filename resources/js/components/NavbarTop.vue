@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-primary-700">
+    <!-- <div class="bg-primary-700">
         <div class="main-container flex justify-between items-center py-2 text-white">
 
             <div class="flex sm:items-center flex-col sm:flex-row gap-1 sm:gap-4">
@@ -73,7 +73,7 @@
                 </Menu>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script setup>
