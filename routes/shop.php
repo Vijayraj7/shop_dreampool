@@ -190,7 +190,7 @@ Route::name('shop.')->group(function () {
             Route::get('/product/{product}/show', 'show')->name('product.show');
             Route::get('/product/{product}/toggle', 'statusToggle')->name('product.toggle');
             Route::get('/product/{product}/destroy', 'destroy')->name('product.destroy');
-            Route::get('/product/thumbnail/{productThumbnail}/delete', 'thumbnailDestroy')->name('product.remove.thumbnail');
+            Route::get('/product/{product}/thumbnail/{media}/delete', 'thumbnailDestroy')->name('product.remove.thumbnail');
             Route::get('/product/{product}/generate-barcode', 'generateBarcode')->name('product.barcode');
             Route::get('/trashed-products', 'onlyTrashedProduct')->name('product.trashedList');
             Route::get('/product/{id}/restore', 'restore')->name('product.restore');
