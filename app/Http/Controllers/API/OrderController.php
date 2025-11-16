@@ -11,6 +11,7 @@ use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
+use App\Models\Shop;
 use App\Models\VerifyManage;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
@@ -78,6 +79,7 @@ class OrderController extends Controller
     {
         $isBuyNow = $request->is_buy_now ?? false;
         $user = auth()->user();
+        // $rshop = generaleSetting('shop',$user);
 
         $verifyManage = Cache::rememberForever('verify_manage', function () {
             return VerifyManage::first();
@@ -96,6 +98,27 @@ class OrderController extends Controller
 
         if ($carts->isEmpty()) {
             return $this->json('Sorry shop cart is empty', [], 422);
+        }
+
+        $is_valid = true;
+        $min_amount = 0;
+        $shop_name = '';
+        $totalPayableAmountx = 0;
+        $shopProducts = $carts->groupBy('shop_id');
+        foreach ($shopProducts as $shopId => $cartProducts) {
+            $shop = Shop::find($shopId);
+            $getCartAmounts = OrderRepository::getCartWiseAmounts($shop, collect($cartProducts), $request->coupon_code);
+            $current_amount = $getCartAmounts['payableAmount'];
+            $totalPayableAmountx += $getCartAmounts['payableAmount'];
+            if ($current_amount < $shop->min_order_amount) {
+                $is_valid = false;
+                $shop_name = $shop->name;
+                $min_amount = $shop->min_order_amount;;
+            }
+        }
+        // return $this->json(count($shopProducts) . 'Sorry, your cart total amount less than minimum order amount ' . $shop->min_order_amount, [], 422);
+        if (!$is_valid) {
+            return $this->json('Sorry, minimum order amount is ' . $min_amount . ' in ' . $shop_name, [], 422);
         }
 
         $toUpper = strtoupper($request->payment_method);

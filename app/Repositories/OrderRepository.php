@@ -176,7 +176,7 @@ class OrderRepository extends Repository
         return $order;
     }
 
-    private static function getCartWiseAmounts(Shop $shop, $carts, $couponCode = null): array
+    public static function getCartWiseAmounts(Shop $shop, $carts, $couponCode = null): array
     {
         $totalAmount = 0;
         $discount = 0;
