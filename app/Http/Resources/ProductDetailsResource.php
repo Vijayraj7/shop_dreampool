@@ -73,6 +73,7 @@ class ProductDetailsResource extends JsonResource
             'total_reviews' => (string) Number::abbreviate($this->reviews?->count(), maxPrecision: 2),
             'total_sold' => (string) number_format($totalSold, 0, '.', ','),
             'quantity' => (int) ($quantity ?? $this->quantity),
+            'min_order_quantity' => (int) ($this->min_order_quantity ?? 1),
             'is_favorite' => (bool) $favorite,
             'thumbnails' => $this->thumbnails(),
             'sizes' => SizeResource::collection($this->sizes),
