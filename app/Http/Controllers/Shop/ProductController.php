@@ -31,7 +31,7 @@ class ProductController extends Controller
         $color = $request->color;
         $search = $request->search;
 
-        $rootShop = generaleSetting('rootShop');
+        $rootShop = generaleSetting('shop');
         $shop = generaleSetting('shop');
 
         // filter products based on category, brand, color and search
@@ -73,11 +73,12 @@ class ProductController extends Controller
     public function create()
     {
         $shop = generaleSetting('shop');
+        $rshop = generaleSetting('rootShop');
 
         // get brands, colors and categories
         $brands = $shop?->brands()->isActive()->get();
         $colors = $shop?->colors()->isActive()->get();
-        $categories = $shop?->categories()->active()->get();
+        $categories = $rshop?->categories()->active()->get();
         $units = $shop?->units()->isActive()->get();
         $sizes = $shop?->sizes()->isActive()->get();
 
@@ -132,11 +133,12 @@ class ProductController extends Controller
     {
         $shop = generaleSetting('shop');
         $rootShop = generaleSetting('shop');
+        $rshop = generaleSetting('rootShop');
 
         // get brands, colors, units, sizes and categories
         $brands = $rootShop?->brands()->isActive()->get();
         $colors = $rootShop?->colors()->isActive()->get();
-        $categories = $rootShop?->categories()->active()->get();
+        $categories = $rshop?->categories()->active()->get();
         $units = $rootShop?->units()->isActive()->get();
         $sizes = $rootShop?->sizes()->isActive()->get();
 
