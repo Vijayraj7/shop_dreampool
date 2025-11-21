@@ -22,8 +22,8 @@
                         <thead>
                             <tr>
                                 <th>{{ __('SL') }}</th>
-                                <th class="text-center">{{ __('Min. Order QTY') }}</th>
-                                <th class="text-center">{{ __('Max. Order QTY') }}</th>
+                                <th class="text-center">{{ __('Min. Order AMNT') }}</th>
+                                <th class="text-center">{{ __('Max. Order AMNT') }}</th>
                                 <th class="text-center">{{ __('Charge') }}</th>
                                 <th class="text-center">{{ __('Action') }}</th>
                             </tr>
