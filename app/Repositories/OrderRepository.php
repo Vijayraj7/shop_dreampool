@@ -183,7 +183,17 @@ class OrderRepository extends Repository
         $coupon = null;
         $totalTaxAmount = 0;
 
-        $orderQty = $carts->sum('quantity');
+        // $orderQty = $carts->sum('quantity');
+        $orderQty = 0;
+
+        foreach ($carts ?? [] as $cart) {
+            if (! $cart) {
+                continue;
+            }
+            $product = $cart->product;
+            $orderQty += $product->discount_price ?? $product->price;
+        }
+
         $deliveryCharge = getDeliveryCharge($orderQty);
 
         $allVatTaxes = [];

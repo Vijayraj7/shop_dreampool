@@ -235,7 +235,8 @@ class CartRepository extends Repository
             $productQty = 0;
 
             foreach ($shopCarts as $cart) {
-                $productQty += $cart->discount_price ?? $cart->price;
+                $product = $cart->product;
+                $productQty += $product->discount_price ?? $product->price;
             }
 
             if ($productQty > 0) {
