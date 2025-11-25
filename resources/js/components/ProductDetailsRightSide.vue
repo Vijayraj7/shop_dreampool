@@ -6,7 +6,7 @@
             class="w-full grow md:flex lg:gap-6 xl:block p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2 xl:space-y-4">
 
             <!-- Delivery charge -->
-            <div class="flex grow flex-col items-start xl:flex-row xl:items-center gap-2 xl:gap-3">
+            <!-- <div class="flex grow flex-col items-start xl:flex-row xl:items-center gap-2 xl:gap-3">
                 <div class="w-10 h-10 bg-slate-100 rounded-xl justify-center items-center flex">
                     <img :src="'/assets/icons/money.svg'" alt="" class="w-6 h-6">
                 </div>
@@ -18,7 +18,7 @@
                         {{ masterStore.showCurrency(product.shop?.delivery_charge) }}
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Estimated delivery time -->
             <div class="flex grow flex-col items-start xl:flex-row xl:items-center gap-2 xl:gap-3">
