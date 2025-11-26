@@ -220,7 +220,7 @@ class OrderRepository extends Repository
 
             $totalAmount += ($price * $cart->quantity);
         }
-        $deliveryCharge = getDeliveryCharge($orderQty);
+        $deliveryCharge = getDeliveryCharge($totalAmount);
 
         // order vat taxes
         $vatTaxes = VatTaxRepository::getActiveVatTaxes();
