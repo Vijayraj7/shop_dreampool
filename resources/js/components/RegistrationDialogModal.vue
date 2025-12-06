@@ -294,6 +294,17 @@ const props = defineProps({
     }
 });
 
+watch(
+    () => props.countries,
+    (newVal) => {
+        if (newVal && newVal.length && !registerFormData.value.country) {
+            registerFormData.value.country = newVal[0].name;
+            registerFormData.value.phone_code = newVal[0].phone_code;
+        }
+    },
+    { immediate: true }
+);
+
 const OTPDialog = ref(false);
 const showRegisterPassword = ref(false);
 
